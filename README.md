@@ -5,7 +5,7 @@
 
 스프링 프레임워크를 사용한 게시판 개발
 -------------
-> **Note : **
+> Note :
 >  스프링 프레임워크를 사용한 MVC(Model-View-Control) 구조 게시판 개발
 
 #### Develop Environment
