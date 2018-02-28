@@ -22,7 +22,7 @@
 >- jackson-databind 2.8.8
 
 
-####Feature
+#### Feature
 >- 게시판 목록
 >- 게시글 작성
 >- 게시글 조회
@@ -73,5 +73,5 @@ MVC ( Model-View-Controller )
 
 ### 문의사항
 기타 궁금하신 사항은 아래 메일로 연락 주세요.
-**itsogkyc@gmail.com **
+itsogkyc@gmail.com
 
