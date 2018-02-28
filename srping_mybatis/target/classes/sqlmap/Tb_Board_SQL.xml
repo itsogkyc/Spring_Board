@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 맵핑될 DAO 인터페이스의 Full name 을 줍니다. -->
+<mapper namespace="com.tistory.pentode.service.dao.BoardDAO">
+
+	<!-- id 속성은 DAO 의 메소드와 같아야 한다. 여기의 boardVO 는 mybatis-confg.xml 에 Alias 되어 
+		있습니다. -->
+	<!-- 리스트 -->
+	<select id="selectBoardList" resultType="boardVO">
+
+		<if test='nowPage == 1'>
+			SELECT NUM,TITLE,CONTENT,READ_COUNT,WRITE_DATE,REPLY FROM(
+			SELECT a.*, ROW_NUMBER() OVER(ORDER BY NUM DESC) zNUM FROM (SELECT A.NUM, A.TITLE, A.CONTENT, A.READ_COUNT, A.WRITE_DATE, NVL(B.REPLYCOUNT,0) AS REPLY
+			FROM TB_BOARD A , (SELECT C.BNO,COUNT(*) AS REPLYCOUNT FROM BBS_COMMENT C GROUP BY BNO) B
+			WHERE A.NUM = B.BNO(+)) a
+			)X WHERE X.zNUM BETWEEN #{nowPage} and 10
+		</if>
+
+		<if test="nowPage > 1">
+			SELECT NUM,TITLE,CONTENT,READ_COUNT,WRITE_DATE,REPLY FROM(
+			SELECT a.*, ROW_NUMBER() OVER(ORDER BY NUM DESC) zNUM FROM (SELECT A.NUM, A.TITLE, A.CONTENT, A.READ_COUNT, A.WRITE_DATE, NVL(B.REPLYCOUNT,0) AS REPLY
+			FROM TB_BOARD A , (SELECT C.BNO,COUNT(*) AS REPLYCOUNT FROM BBS_COMMENT C GROUP BY BNO) B
+			WHERE A.NUM = B.BNO(+)) a
+			)X WHERE X.zNUM between (#{nowPage}-1)*10 + 1 and #{nowPage}*10
+		</if>
+
+	</select>
+
+
+
+
+
+
+
+
+	<!-- 조회 -->
+	<select id="selectOneView" resultType="boardVO">
+		SELECT NUM
+		, TITLE
+		, CONTENT
+		, READ_COUNT
+		, WRITE_DATE
+		FROM TB_BOARD
+		WHERE NUM=#{num}
+	</select>
+
+
+	<!-- 삭제 -->
+	<delete id="deleteBoard">
+		DELETE FROM TB_BOARD WHERE NUM = #{num}
+	</delete>
+
+
+	<!-- 입력 -->
+	<insert id="insertBoard">
+		<selectKey resultType="int" keyProperty="num" order="BEFORE">
+			SELECT NVL(MAX(num),0)+1 FROM TB_BOARD
+		</selectKey>
+		INSERT INTO TB_BOARD (
+		NUM, TITLE, CONTENT, READ_COUNT, WRITE_DATE
+		) VALUES (
+		SEQ_BOARD.NEXTVAL, #{title}, #{content}, 0, SYSDATE
+		)
+	</insert>
+
+	<select id="updateBoard" resultType="boardVO">
+		SELECT
+		NUM,TITLE,READ_COUNT,CONTENT,WRITE_DATE FROM TB_BOARD WHERE NUM=#{num}
+	</select>
+
+	<update id="doUpdate">
+		UPDATE TB_BOARD SET TITLE=#{title},
+		CONTENT=#{content} WHERE NUM=#{num}
+	</update>
+
+	<update id="readCountUpdate">
+		UPDATE TB_BOARD SET READ_COUNT= READ_COUNT + 1 WHERE
+		NUM=#{num}
+	</update>
+
+	<select id="totalPageNum" resultType="PageMaker">
+		select count(*) as
+		totalpage from TB_BOARD
+	</select>
+
+	<select id="getTotalRecord" resultType="int">
+		select count(*) as
+		totalpage from TB_BOARD
+	</select>
+
+
+	<!-- 댓글 관련 sql문 -->
+	
+	<select id="commentCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM BBS_COMMENT WHERE BNO=#{bno}
+	</select>
+
+	<select id="commentList" resultType="commentVO">
+		SELECT
+		CNO, BNO, CONTENT, REG_DATE
+		FROM BBS_COMMENT WHERE BNO=#{bno} ORDER BY CNO
+	</select>
+
+	<insert id="commentInsert">
+		INSERT INTO
+		BBS_COMMENT (CNO, BNO, CONTENT)
+		VALUES( COMMENT_BOARD.NEXTVAL, #{bno}, #{content} )
+	</insert>
+
+	<update id="commentUpdate">
+		UPDATE BBS_COMMENT
+		SET
+		CONTENT = #{content}
+		WHERE CNO = #{cno}
+	</update>
+
+	<delete id="commentDelete">
+		DELETE FROM BBS_COMMENT WHERE CNO = #{cno}
+	</delete>
+
+
+</mapper>
