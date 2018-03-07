@@ -37,7 +37,7 @@
 			<div class="center">°Ô½ÃÆÇ</div>
 			<div class="right">
 			<ons-toolbar-button>
-				<ons-toolbar-button onClick="location.href='<c:url value='/boardRegisterForm.do' />'"><ons-icon id="toolbar-icon" icon="ion-compose, material:"></ons-icon></ons-toolbar-button>
+				<ons-toolbar-button onClick="location.href='<c:url value='/boardRegisterForm.do' />'"><ons-icon id="toolbar-icon" icon="ion-compose"></ons-icon></ons-toolbar-button>
 			</ons-toolbar-button>
 			</div>
 		</ons-toolbar>
