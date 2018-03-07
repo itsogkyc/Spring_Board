@@ -1,9 +1,10 @@
 package hibernate;
 
 import java.util.List;
-import com.tistory.pentode.PageMaker;
-import com.tistory.pentode.vo.BoardVO;
-import com.tistory.pentode.vo.CommentVO;
+
+import com.kopo.hibernate.PageMaker;
+import com.kopo.hibernate.vo.BoardVO;
+import com.kopo.hibernate.vo.CommentVO;
 
 public interface UserProvider {
 

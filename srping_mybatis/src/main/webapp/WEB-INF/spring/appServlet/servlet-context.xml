@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.tistory.pentode" />
+	<context:component-scan base-package="com.kopo.mybatis" />
 	
 	<resources location="/resources/css/tablestyle.css/" mapping="/css/**" />
 	

@@ -23,7 +23,7 @@
 		<property name="hbm2ddl.auto">Validate</property>   <!-- SessionFactory가 생성될 때 스키마 자동생성 -->
 		
 		<!-- XML 매핑 파일 목록 -->
-		<mapping resource= "com/tistory/pentode/vo/BoardVO.hbm.xml" />
+		<mapping resource= "com/kopo/hibernate/vo/BoardVO.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>

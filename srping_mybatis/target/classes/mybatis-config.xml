@@ -9,9 +9,9 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias alias="boardVO" type="com.tistory.pentode.vo.BoardVO"/>
-		<typeAlias alias="commentVO" type="com.tistory.pentode.vo.CommentVO"/>
-		<typeAlias alias="PageMaker" type="com.tistory.pentode.PageMaker"/>
+		<typeAlias alias="boardVO" type="com.kopo.mybatis.vo.BoardVO"/>
+		<typeAlias alias="commentVO" type="com.kopo.mybatis.vo.CommentVO"/>
+		<typeAlias alias="PageMaker" type="com.kopo.mybatis.PageMaker"/>
 	</typeAliases>
 	
 </configuration>

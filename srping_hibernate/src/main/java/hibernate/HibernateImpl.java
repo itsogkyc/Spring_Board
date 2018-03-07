@@ -5,9 +5,9 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.tistory.pentode.PageMaker;
-import com.tistory.pentode.vo.BoardVO;
-import com.tistory.pentode.vo.CommentVO;
+import com.kopo.hibernate.PageMaker;
+import com.kopo.hibernate.vo.BoardVO;
+import com.kopo.hibernate.vo.CommentVO;
 
 
 public class HibernateImpl implements UserProvider {
