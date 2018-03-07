@@ -69,8 +69,10 @@ MVC ( Model-View-Controller )
 
 ![enter image description here](https://github.com/itsogkyc/Spring_Board/blob/master/imgfile/img_04.png?raw=true)
 
+
 OnsenUI 적용 게시판 동작화면 (Last Updated 2018.03.07)
 -------------
+
 
 ![enter image description here](https://github.com/itsogkyc/Spring_Board/blob/master/imgfile/onsen1.png?raw=true)
 
